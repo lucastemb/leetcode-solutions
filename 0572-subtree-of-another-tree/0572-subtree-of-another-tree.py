@@ -12,7 +12,6 @@ class Solution:
                 return False
             elif is_identical(node, subRoot):
                 return True
-            
             return dfs(node.left) or dfs(node.right)
         
         def is_identical(f,s):
@@ -22,3 +21,5 @@ class Solution:
         
         return dfs(root)
 
+#time: o(mn)
+#space: o(m+n)

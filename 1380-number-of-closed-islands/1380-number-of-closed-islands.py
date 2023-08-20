@@ -7,7 +7,6 @@ class Solution:
 
         #idea: have the dfs function return true or false if it returns true increment the count by 1? 
         def dfs(r,c):
-            #if out of bounds or has been visited break
             if r not in range(ROWS) or c not in range(COLS):
                 return 0
             if grid[r][c]==1 or (r,c) in visit: 
@@ -29,4 +28,5 @@ class Solution:
                     count+=dfs(r,c)
         return count
 
-        #you have to find the island first ofc, but then after that what... 
+        #time: o(m*n*4^n)
+        #space: ^ 

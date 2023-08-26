@@ -10,7 +10,6 @@ class Solution:
         for r in range(len(matrix)):
             for c in range(len(matrix)):
                 matrix[r][c]=track[(len(matrix)-1-c)][r]
-        matrix=res
 
         #time: O(N^2)
         #space: O(N^2)

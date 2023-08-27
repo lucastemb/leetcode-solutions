@@ -4,12 +4,20 @@ class Solution:
         Do not return anything, modify matrix in-place instead.
         """
 
-        #brute force to optimize
-        track=deepcopy(matrix)
-        res=[[0] * len(matrix) for i in range(len(matrix))]
-        for r in range(len(matrix)):
-            for c in range(len(matrix)):
-                matrix[r][c]=track[(len(matrix)-1-c)][r]
+        l, r = 0, len(matrix) - 1
+        while l < r: 
+            for i in range(r-l):
+                top, bottom = l, r
 
-        #time: O(N^2)
-        #space: O(N^2)
+                # save top left value
+                topLeft = matrix[top][l+i]
+
+                matrix[top][l+i] = matrix[bottom-i][l]
+
+                matrix[bottom-i][l] = matrix[bottom][r-i]
+
+                matrix[bottom][r -i] = matrix[top + i][r]
+
+                matrix[top + i][r] = topLeft
+            r-=1
+            l+=1

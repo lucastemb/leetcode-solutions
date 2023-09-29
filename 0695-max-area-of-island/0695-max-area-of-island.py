@@ -12,9 +12,13 @@ class Solution:
                 return 0
             visit.add((r,c))
             add=1
+            #up
             add+=dfs(r-1,c)
+            #down
             add+=dfs(r+1,c)
+            #right
             add+=dfs(r,c+1)
+            #left
             add+=dfs(r,c-1)
             return add
 

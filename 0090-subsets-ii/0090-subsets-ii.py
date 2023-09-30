@@ -34,4 +34,5 @@ class Solution:
         dfs(0)
         return res
 
-        
+        #space: o(n)
+        #time: o(n*2^n)

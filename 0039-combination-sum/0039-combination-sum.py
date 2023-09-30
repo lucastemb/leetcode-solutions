@@ -1,25 +1,35 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        #backtracking requires dfs
+        '''
+        solution: backtracking 
+        dfs
+        time: o(n*3^n) space:o(n)
 
-        #array that stores results
-        
-        #i know i have to use dfs, but i don't know how to get each permutation
+                      (.)
+                    /    \
+                (2)        (.)
+                /  \       /  \
+            (2,3)   (2,6) (3)  (.)
+            .....
+
+        '''
 
         res=[]
-        #need a dfs function to search all possible combinations in array
-        def dfs(index, curr, total):
-            if total == target: 
-                res.append(curr.copy())
+        subset=[] #arr contain the subsets that may equal to the target
+        def dfs(i):
+            if sum(subset) == target and subset not in res: #equals to target
+                res.append(subset.copy())
+            if i >= len(candidates) or sum(subset) > target: #out of bounds
                 return
-            if index >= len(candidates) or total > target: 
-                return 
-
-            curr.append(candidates[index])
-            dfs(index, curr, total+candidates[index])
-            curr.pop()
-            dfs(index+1, curr, total)
-        dfs(0, [], 0)
+            subset.append(candidates[i])
+            dfs(i)
+            dfs(i+1)
+            subset.pop()
+            dfs(i+1)
+        dfs(0)
         return res
+
+
+        
 
 

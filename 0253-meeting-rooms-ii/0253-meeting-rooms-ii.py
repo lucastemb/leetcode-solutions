@@ -2,6 +2,7 @@ class Solution:
     def minMeetingRooms(self, intervals: List[List[int]]) -> int:
         '''
         if they overlap, then you can increment the count by 1
+        use heap if the min heap value is less than the start time of a meeting in the sorted array pop the min put the new one in 
         '''
         if not intervals:
             return 0
@@ -13,4 +14,7 @@ class Solution:
                 heapq.heappop(h)
             heapq.heappush(h,intervals[i][1])
         return len(h)
+        
+        #space: O(N)
+        #time: O(1)
         

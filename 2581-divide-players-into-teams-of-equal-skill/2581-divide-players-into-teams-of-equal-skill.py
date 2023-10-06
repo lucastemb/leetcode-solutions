@@ -1,13 +1,15 @@
 class Solution:
     def dividePlayers(self, skill: List[int]) -> int:
         skill=sorted(skill)
-        pairings=[]
+        target=(skill[0]+skill[len(skill)-1])
         res=0
         for i in range(len(skill)//2):
-            if i > 0 and skill[i]+skill[len(skill)-1-i] != sum(pairings[0]):
+            if skill[i]+skill[len(skill)-1-i] != target:
                 return -1
-            pairings.append((skill[i],skill[len(skill)-1-i])) 
-            res+=(skill[i]*skill[len(skill)-1-i])
-            
+            res+=(skill[i]*skill[len(skill)-1-i])   
         return res
+
+        #time: O(n*log(n))
+        #space: O(1)
+
             

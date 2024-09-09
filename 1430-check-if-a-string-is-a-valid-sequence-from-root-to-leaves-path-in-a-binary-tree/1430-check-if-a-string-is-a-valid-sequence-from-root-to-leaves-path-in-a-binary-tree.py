@@ -6,12 +6,13 @@
 #         self.right = right
 class Solution:
     def isValidSequence(self, root: Optional[TreeNode], arr: List[int]) -> bool:
-        def dfs(node, path):
+        def dfs(node, index):
             if not node: 
                 return False
-            path.append(node.val)
-            if path == arr and (not node.left and not node.right):
-                print("found it!")
+            seqLen = len(arr)
+            if index >= seqLen or arr[index] != node.val:
+                return False
+            if index == seqLen-1 and (not node.left and not node.right):
                 return True
-            return (dfs(node.left, list(path)) or dfs(node.right, list(path)))
-        return dfs(root, [])
+            return (dfs(node.left, index+1) or dfs(node.right, index+1))
+        return dfs(root, 0)

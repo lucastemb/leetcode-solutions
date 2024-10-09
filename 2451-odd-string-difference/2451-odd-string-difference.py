@@ -1,15 +1,13 @@
 class Solution:
     def oddString(self, words: List[str]) -> str:
-        count={}
-        indexes={}
-        for i in range(len(words)):
-            char_arr=[]
-            for j in range(1, len(words[i])):
-                char_arr.append(ord(words[i][j])-ord(words[i][j-1]))
-            count[tuple(char_arr)]=count.get(tuple(char_arr), 0)+1
-            indexes[tuple(char_arr)]=i
-        final = sorted(count.items(), key=lambda x: x[1])
-        return words[indexes[final[0][0]]]
-
-            
-
+        diff={}
+        ans={}
+        for word in words:
+            res=[]
+            for i in range(1, len(word)):
+                res.append(ord(word[i])-ord(word[i-1]))
+            diff[tuple(res)]=diff.get(tuple(res),0)+1
+            ans[tuple(res)]=word
+        print(min(diff.items(), key= lambda x: x[1]))
+        least_freq_word=min(diff.items(), key= lambda x: x[1])[0]
+        return ans[least_freq_word]

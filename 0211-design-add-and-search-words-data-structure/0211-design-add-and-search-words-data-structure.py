@@ -1,44 +1,36 @@
-class TrieNode:
+#implement Trie data structure 
+class Node: 
     def __init__(self):
         self.children={}
         self.end=False
-
-
 class WordDictionary:
-
     def __init__(self):
-        self.root = TrieNode()
-        
-
+        self.head = Node()
     def addWord(self, word: str) -> None:
-        curr = self.root
-        for letter in word: 
-            if letter not in curr.children: 
-                curr.children[letter] = TrieNode()
-            curr = curr.children[letter]
+        curr = self.head
+        for i in range(len(word)):
+            if word[i] not in curr.children:
+                curr.children[word[i]]=Node()
+            curr=curr.children[word[i]]
         curr.end = True
-        
+
 
     def search(self, word: str) -> bool:
-        #do a dfs?
-        #passing in starting index j and current node 
         def dfs(j, root):
-            curr=root
+            curr = root
             for i in range(j, len(word)):
-                char=word[i]
-                if char == ".":
+                c=word[i]
+                if c == ".":
                     for child in curr.children.values():
                         if dfs(i+1, child):
                             return True
-                    return False
+                    return False 
                 else:
-                    if char not in curr.children: 
+                    if c not in curr.children:
                         return False
-                    curr=curr.children[char]
+                    curr = curr.children[c]
             return curr.end
-        return dfs(0, self.root)
-            
-                
+        return dfs(0, self.head)
         
 
 
